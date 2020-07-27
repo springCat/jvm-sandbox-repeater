@@ -194,5 +194,3 @@ public void doMock(BeforeEvent event, Boolean entrance, InvokeType type) throws 
 ## 钉钉交流群
 ![pic](http://sandbox-ecological.oss-cn-hangzhou.aliyuncs.com/DingTalkGroup.png)
 
-## 源码导图
-![pic](./code_guide.png)
