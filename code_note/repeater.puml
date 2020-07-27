@@ -16,19 +16,25 @@
 ** com.alibaba.jvm.sandbox.repeater.plugin.core.bridge.ClassloaderBridge(类加载桥接模式) repeater核心能力之一，classLoader还原，保证序列化/反序列化能够完整还原
 
 ** RepeaterModule.initialize根据配置初始化
+
 *** com.alibaba.jvm.sandbox.repeater.plugin.api.LifecycleManager(加载处理组件)
+
 ***	com.alibaba.jvm.sandbox.repeater.module.impl.JarFileLifeCycleManager(基于spi机制初始化)
+
 *** loadInvokePlugins 加载调用插件SPI
-**** com.alibaba.jvm.sandbox.api.resource.ModuleEventWatcher	(事件观察者,jvm sandbox提供的切面)
-**** com.alibaba.jvm.sandbox.repeater.plugin.api.ConfigManager(配置文件)
+**** com.alibaba.jvm.sandbox.api.resource.ModuleEventWatcher(事件观察者,jvm sandbox提供的切面)
+**** com.alibaba.jvm.sandbox.repeater.plugin.api.ConfigManager(配置文件对应 repeater.properties)
 **** com.alibaba.jvm.sandbox.repeater.plugin.core.impl.api.DefaultInvocationListener(录制回放核心处理逻辑)
 **** com.alibaba.jvm.sandbox.repeater.plugin.core.model.EnhanceModel(插件增强类型的基础抽象)
+**** com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterConfig(配置文件 repeater-config.json)
+
 *** loadRepeaters 加载回放器SPI
 **** DubboRepeater
 **** HttpRepeater   (目前被写死,只回放本机接口)
 **** JavaRepeater
 ***** agent启动  能够回放spring容器中的任何bean实例
 ***** attach启动 需要引入repeater-client并在spring中注入
+
 *** loadSubscribes com.alibaba.jvm.sandbox.repeater.plugin.core.impl.spi.RepeatSubscribeSupporter(默认消息订阅器,基于eventBus实现)
 **** 转发给com.alibaba.jvm.sandbox.repeater.plugin.api.FlowDispatcher(流量分配器) 处理
 **** 缓存倒RepeatCache(基于guava cache实现)
